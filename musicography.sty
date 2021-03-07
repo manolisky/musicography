@@ -1,0 +1,71 @@
+\ProvidesPackage{musicography}[2014/08/21 musicography]
+
+\DeclareLanguageMapping{english}{english-musicography}
+\DeclareLanguageMapping{greek}{greek-musicography}
+
+\DeclareFieldFormat[musicography]{title}{\textit{#1}}
+
+% \newbibmacro*{mainartist}{%
+%   \iffieldundef{conductor}
+%   {\iffieldundef{director}
+%     {\iffieldundef{artist}
+%       {\iffieldundef{soloist}
+%         {}{\printnames{soloist}}
+%       }{\printnames{artist}}
+%     }{\printnames{director}}
+%   }{\printnames{conductor}}
+% }
+
+\newbibmacro*{mainartist}{%
+  \printnames{conductor}
+}
+
+\newbibmacro*{maindate}{%
+  \iffieldundef{recordingdate}%
+  {%
+    \printdate{releasedate}%
+  }%
+  {%
+    \printdate{recordingdate}%
+  }%
+}
+
+\newbibmacro*{artisandensemble}%
+{%
+  \usebibmacro{mainartist}%
+  \iffieldundef{ensemble}{}%
+  {%
+    \bibstring{and}
+    \printfield{ensemble}%
+  }%
+}
+
+\DeclareBibliographyDriver{disc}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{artisandensemble}%
+  \newunit\newblock
+  \printfield{title}
+  \newunit\newblock
+  \printfield{label}
+  \newunit\newblock
+  \usebibmacro{maindate}%
+  \newunit\newblock
+  \usebibmacro{finentry}%
+}
+
+\DeclareLabeldate{%
+  % \field{date}
+  % \field{eventdate}
+  % \field{origdate}
+  \field{askdate}
+  % \field{urldate}
+  \literal{nodate}
+}
+
+% \DeclareLabelname{%
+%   \names{conductor}
+%   \names{ensemble}
+%   \names{artist}
+%   \names{director}
+% }

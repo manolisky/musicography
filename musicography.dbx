@@ -1,0 +1,47 @@
+% DISC data entry
+
+  \DeclareDatamodelEntrytypes{disc}
+
+  \DeclareDatamodelFields[type=field,datatype=literal]{
+    ensemble,
+    format,
+    genre, % historical, pop, roque et al
+    style, % classical, baroque, rennaisance et al
+    category, % quartet, piano music, orchestral et al
+    label,
+    serial,
+  }
+
+  \DeclareDatamodelFields[type=list,datatype=name]{
+    conductor,
+    director,
+    artist,
+    soloist,
+    composer,
+  }
+
+  \DeclareDatamodelFields[type=field, datatype=date, skipout]{
+    recordingdate,
+    releasedate,
+  }
+
+  % \DeclareDatamodelFields[type=field, datatype=verbatim]{
+
+  % }
+
+  \DeclareDatamodelEntryfields[disc]{
+    conductor,
+    ensemble,
+    soloist,
+    artist,
+    composer,
+    director,
+    title,
+    releasedate,
+    recordingdate,
+    label,
+    serial,
+    genre,
+    style,
+    category,
+  }

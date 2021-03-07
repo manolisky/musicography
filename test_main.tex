@@ -1,0 +1,31 @@
+% !TeX root = ./test_main.tex
+% !TEX TS-program = xelatex
+% !BIB program = biber
+
+\documentclass[english]{article}
+% \usepackage{babel}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{greek}
+\setotherlanguage{english}
+
+\setmainfont[Script=Greek]{GFS Artemisia}
+\setsansfont[Script=Greek]{GFS Neohellenic}
+\setmonofont[Script=Greek]{Ubuntu Mono}
+
+\usepackage{csquotes}
+\usepackage[datamodel=musicography, backend=biber, style=authoryear]{biblatex}
+\usepackage{hyperref}
+
+\usepackage{musicography}
+
+\addbibresource{discography.bib}
+
+\begin{document}
+Test \cite{savall2001} tost.
+\nocite{*}
+
+\printbibliography
+
+\end{document}
