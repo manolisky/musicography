@@ -1,4 +1,4 @@
-\ProvidesPackage{musicography}[2014/08/21 musicography]
+\ProvidesPackage{musicography}[2021/03/07 musicography]
 
 \DeclareLanguageMapping{english}{english-musicography}
 \DeclareLanguageMapping{greek}{greek-musicography}
@@ -6,14 +6,14 @@
 \DeclareFieldFormat[musicography]{title}{\textit{#1}}
 
 % \newbibmacro*{mainartist}{%
-%   \iffieldundef{conductor}
-%   {\iffieldundef{director}
-%     {\iffieldundef{artist}
-%       {\iffieldundef{soloist}
-%         {}{\printnames{soloist}}
-%       }{\printnames{artist}}
-%     }{\printnames{director}}
-%   }{\printnames{conductor}}
+%   \iffieldundef{conductor}{
+%     \iffieldundef{director}{
+%       \iffieldundef{artist}{
+%         \iffieldundef{soloist}{}{
+%           \printnames{soloist}}}{
+%         \printnames{artist}}}{
+%       \printnames{director}}}{
+%     \printnames{conductor}}
 % }
 
 \newbibmacro*{mainartist}{%
@@ -23,10 +23,10 @@
 \newbibmacro*{maindate}{%
   \iffieldundef{recordingdate}%
   {%
-    \printdate{releasedate}%
+    \printfield{releaseyear}%
   }%
   {%
-    \printdate{recordingdate}%
+    \printfield{recordingyear}%
   }%
 }
 
@@ -34,8 +34,8 @@
 {%
   \usebibmacro{mainartist}%
   \iffieldundef{ensemble}{}%
-  {%
-    \bibstring{and}
+  {
+    \bibstring{with}
     \printfield{ensemble}%
   }%
 }
@@ -55,17 +55,14 @@
 }
 
 \DeclareLabeldate{%
-  % \field{date}
-  % \field{eventdate}
-  % \field{origdate}
-  \field{askdate}
-  % \field{urldate}
+  \field{recordingyear}
+  \field{releaseyear}
   \literal{nodate}
 }
 
-% \DeclareLabelname{%
-%   \names{conductor}
-%   \names{ensemble}
-%   \names{artist}
-%   \names{director}
-% }
+\DeclareLabelname{%
+  \field{conductor}
+  \field{ensemble}
+  \field{artist}
+  \field{director}
+}
