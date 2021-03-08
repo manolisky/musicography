@@ -1,4 +1,4 @@
-% !TeX root = ./test_main.tex
+% !TeX root = ./gr_test_main.tex
 % !TEX TS-program = xelatex
 % !BIB program = biber
 
@@ -7,7 +7,12 @@
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
-\setdefaultlanguage{english}
+\setdefaultlanguage{greek}
+\setotherlanguage{english}
+
+\setmainfont[Script=Greek]{GFS Artemisia}
+\setsansfont[Script=Greek]{GFS Neohellenic}
+\setmonofont[Script=Greek]{Ubuntu Mono}
 
 \usepackage{csquotes}
 \usepackage[datamodel=musicography, backend=biber, style=authoryear]{biblatex}
@@ -18,7 +23,7 @@
 \addbibresource{discography.bib}
 
 \begin{document}
-Test \cite{savall2001} tost.
+Τεστ \cite{savall2001} τοστ.
 \nocite{*}
 
 \printbibliography

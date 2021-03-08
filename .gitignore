@@ -8,3 +8,7 @@ test_main.run.xml
 test_main.bcf
 biblatex-music-data-entry.code-workspace
 test_main.pdf
+gr_test_main.pdf
+gr_test_main.bcf
+gr_test_main.run.xml
+gr_test_main.synctex.gz
