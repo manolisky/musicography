@@ -30,13 +30,13 @@
   % }
 
   \DeclareDatamodelEntryfields[disc]{
-    conductor,
-    ensemble,
-    soloist,
-    artist,
-    composer,
-    director,
     title,
+    artist,
+    conductor,
+    director,
+    soloist,
+    ensemble,
+    composer,
     releasedate,
     recordingdate,
     label,

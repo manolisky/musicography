@@ -17,11 +17,11 @@
 % }
 
 \newbibmacro*{mainartist}{%
-  \printnames{conductor}
+  \printnames{artist}%
 }
 
 \newbibmacro*{maindate}{%
-  \iffieldundef{recordingdate}%
+  \iffieldundef{recordingyear}%
   {%
     \printfield{releaseyear}%
   }%
