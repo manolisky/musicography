@@ -18,4 +18,5 @@ A LaTeX package to typeset music related references and citations under biblatex
 
 ## other to-dos
 
+- support for different bibliography and citation styles
 - basic documentation
