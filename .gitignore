@@ -12,3 +12,4 @@ gr_test_main.pdf
 gr_test_main.bcf
 gr_test_main.run.xml
 gr_test_main.synctex.gz
+.gitignore
