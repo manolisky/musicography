@@ -3,22 +3,46 @@
 \DeclareLanguageMapping{english}{english-musicography}
 \DeclareLanguageMapping{greek}{greek-musicography}
 
-\DeclareFieldFormat[musicography]{title}{\textit{#1}}
-
-% \newbibmacro*{mainartist}{%
-%   \iffieldundef{conductor}{
-%     \iffieldundef{director}{
-%       \iffieldundef{artist}{
-%         \iffieldundef{soloist}{}{
-%           \printnames{soloist}}}{
-%         \printnames{artist}}}{
-%       \printnames{director}}}{
-%     \printnames{conductor}}
-% }
+\DeclareFieldFormat{title}{\emph{#1}}
+\DeclareNameFormat{composer}{
+  \ifthenelse{\value{listcount}=1}
+    {\bibopenbracket}
+    {}
+  %
+  \namepartfamily%
+  \ifdefvoid{\namepartgiven}{}{%
+    \addcomma\space\namepartgiveni
+  }%
+  \ifthenelse{\value{listcount}<\value{liststop}}
+  {%
+    \addcomma%
+  }{}
+  %
+  \ifthenelse{\value{listcount}=\value{liststop}}
+  {%
+    \bibclosebracket
+  }{}
+}
 
 \newbibmacro*{mainartist}{%
-  \printnames{artist}%
+  \ifnameundef{conductor}{%
+    \ifnameundef{director}{%
+      \ifnameundef{artist}{%
+        \ifnameundef{soloist}{}{%
+          \printnames{soloist}}}{%
+        \printnames{artist}}}{%
+      \printnames{director}}}{%
+    \printnames{conductor}%
+  }%
 }
+
+\newbibmacro*{titleWithComposer}%
+{%
+  \ifnameundef{composer}{}{%
+    \printnames{composer}%
+    \setunit{\addspace}}%
+  \printfield{title}%
+}%
 
 \newbibmacro*{maindate}{%
   \iffieldundef{recordingyear}%
@@ -30,12 +54,22 @@
   }%
 }
 
+\newbibmacro*{labelanddate}{%
+  \mkbibparens{%
+    \printfield{label}:%
+    \setunit{\addspace}%
+    \usebibmacro{maindate}%
+  }%
+}
+
 \newbibmacro*{artisandensemble}%
 {%
   \usebibmacro{mainartist}%
   \iffieldundef{ensemble}{}%
-  {
-    \bibstring{with}
+  {%
+    \setunit{\addspace}%
+    \bibstring{with}%
+    \setunit{\addspace}%
     \printfield{ensemble}%
   }%
 }
@@ -45,11 +79,9 @@
   \usebibmacro{begentry}%
   \usebibmacro{artisandensemble}%
   \newunit\newblock
-  \printfield{title}
+  \usebibmacro{titleWithComposer}%
   \newunit\newblock
-  \printfield{label}
-  \newunit\newblock
-  \usebibmacro{maindate}%
+  \usebibmacro{labelanddate}%
   \newunit\newblock
   \usebibmacro{finentry}%
 }

@@ -2,7 +2,7 @@
 % !TEX TS-program = xelatex
 % !BIB program = biber
 
-\documentclass[english]{article}
+\documentclass{article}
 
 \usepackage{csquotes}
 \usepackage[datamodel=musicography, backend=biber, style=authoryear]{biblatex}
@@ -13,9 +13,13 @@
 \addbibresource{discography.bib}
 
 \begin{document}
-Test \cite{savall2001} tost.
-\nocite{*}
 
-\printbibliography
+    Cite test \cite{savall2001}.
+
+    Full cite test \fullcite{solti2012}.
+
+    \nocite{*}
+
+    \printbibliography
 
 \end{document}
