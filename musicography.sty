@@ -6,23 +6,15 @@
 \DeclareFieldFormat{title}{\emph{#1}}
 \DeclareNameFormat{composer}{
   \ifthenelse{\value{listcount}=1}
-    {\bibopenbracket}
-    {}
-  %
+    {\bibopenbracket}{}%
   \namepartfamily%
   \ifdefvoid{\namepartgiven}{}
-  {%
-    \addcomma\space\namepartgiveni
-  }%
+  {\addcomma\space\namepartgiveni}%
   \ifthenelse{\value{listcount}<\value{liststop}}
-  {%
-    \addcomma%
-  }{}
+  {\addcomma}{}%
   \ifthenelse{\value{listcount}=\value{liststop}}
-  {%
-    \bibclosebracket
-  }{}
-}
+  {\bibclosebracket}{}%
+}%
 
 \newbibmacro*{mainartist}{%
   \ifnameundef{conductor}{%
@@ -52,16 +44,17 @@
 }
 
 \newbibmacro*{labelanddate}{%
-  \bibopenparens%
-  \printfield{label}:%
-  \setunit{\addspace}%
-  \usebibmacro{maindate}%
-  \bibcloseparens%
+  % \bibopenparen%
+    \printfield{label}%
+    \printtext{:}%
+    \setunit{\addspace}%
+    \usebibmacro{maindate}%
+  % \bibcloseparen%
 }
 
 \newbibmacro*{artistandensemble}{%
   \usebibmacro{mainartist}%
-  \iffieldundef{ensemble}{}%{%
+  \iffieldundef{ensemble}{}{%
     \setunit{\addspace}%
     \bibstring{with}%
     \setunit{\addspace}%
