@@ -10,14 +10,14 @@
     {}
   %
   \namepartfamily%
-  \ifdefvoid{\namepartgiven}{}{%
+  \ifdefvoid{\namepartgiven}{}
+  {%
     \addcomma\space\namepartgiveni
   }%
   \ifthenelse{\value{listcount}<\value{liststop}}
   {%
     \addcomma%
   }{}
-  %
   \ifthenelse{\value{listcount}=\value{liststop}}
   {%
     \bibclosebracket
@@ -36,8 +36,7 @@
   }%
 }
 
-\newbibmacro*{titleWithComposer}%
-{%
+\newbibmacro*{titleWithComposer}{%
   \ifnameundef{composer}{}{%
     \printnames{composer}%
     \setunit{\addspace}}%
@@ -45,28 +44,24 @@
 }%
 
 \newbibmacro*{maindate}{%
-  \iffieldundef{recordingyear}%
-  {%
+  \iffieldundef{recordingyear}{%
     \printfield{releaseyear}%
-  }%
-  {%
+  }{%
     \printfield{recordingyear}%
   }%
 }
 
 \newbibmacro*{labelanddate}{%
-  \mkbibparens{%
-    \printfield{label}:%
-    \setunit{\addspace}%
-    \usebibmacro{maindate}%
-  }%
+  \bibopenparens%
+  \printfield{label}:%
+  \setunit{\addspace}%
+  \usebibmacro{maindate}%
+  \bibcloseparens%
 }
 
-\newbibmacro*{artistandensemble}%
-{%
+\newbibmacro*{artistandensemble}{%
   \usebibmacro{mainartist}%
-  \iffieldundef{ensemble}{}%
-  {%
+  \iffieldundef{ensemble}{}%{%
     \setunit{\addspace}%
     \bibstring{with}%
     \setunit{\addspace}%
